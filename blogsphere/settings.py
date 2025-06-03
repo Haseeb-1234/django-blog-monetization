@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -49,9 +50,18 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'crispy_forms',
     'crispy_bootstrap5',
+    'djstripe',
+    'meta',
+    'django.contrib.sitemaps',
     
 ]
-
+# SEO Settings
+META_SITE_PROTOCOL = 'https'
+META_SITE_DOMAIN = 'yourdomain.com'
+META_SITE_NAME = 'CodeMonetize'
+META_USE_OG_PROPERTIES = True
+META_USE_TWITTER_PROPERTIES = True
+META_USE_SCHEMAORG_PROPERTIES = True
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
@@ -64,6 +74,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "allauth.account.middleware.AccountMiddleware",
+    'core.middleware.PremiumContentMiddleware',
 
 ]
 
@@ -165,3 +176,19 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # For development
+
+# Stripe settings
+STRIPE_LIVE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY")
+STRIPE_TEST_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY")
+STRIPE_LIVE_MODE = False  # Change to True in production
+DJSTRIPE_WEBHOOK_SECRET = os.environ.get("DJSTRIPE_WEBHOOK_SECRET")
+DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
+DJSTRIPE_USE_NATIVE_JSONFIELD = True
+
+# Use test keys in development
+if STRIPE_LIVE_MODE is False:
+    STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_TEST_PUBLIC_KEY")
+    STRIPE_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY")
+else:
+    STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_LIVE_PUBLIC_KEY")
+    STRIPE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY")
