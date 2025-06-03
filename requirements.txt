@@ -1,0 +1,11 @@
+Django==5.0
+pillow
+django-allauth
+django-crispy-forms
+crispy-bootstrap5
+django-stripe
+django-seo
+django-analytical
+whitenoise
+gunicorn
+psycopg2-binary

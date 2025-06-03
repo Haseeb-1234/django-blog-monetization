@@ -1,0 +1,33 @@
+{% extends "core/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+          <h2 class="text-center">Sign In</h2>
+        </div>
+        <div class="card-body">
+          <form class="login" method="POST" action="{% url 'account_login' %}">
+            {% csrf_token %}
+            {{ form|crispy }}
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+            <div class="d-grid gap-2">
+              <button class="btn btn-primary mt-3" type="submit">Sign In</button>
+              <a class="btn btn-link text-center" href="{% url 'account_reset_password' %}">Forgot Password?</a>
+            </div>
+          </form>
+          <hr>
+          <p class="text-center">Don't have an account? 
+            <a href="{{ signup_url }}">Sign up here</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

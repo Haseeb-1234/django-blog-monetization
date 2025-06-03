@@ -12,7 +12,7 @@
                     <a class="nav-link" href="{% url 'home' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'post_list' %}">Blog</a>
+                    
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Premium</a>
@@ -21,27 +21,29 @@
                     <a class="nav-link" href="#">Resources</a>
                 </li>
             </ul>
+            <!-- Replace the auth section with this -->
             <ul class="navbar-nav">
-                {% if user.is_authenticated %}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
-                        <i class="fas fa-user-circle me-1"></i> {{ user.username }}
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Dashboard</a></li>
-                        <li><a class="dropdown-item" href="#">My Profile</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Logout</a></li>
-                    </ul>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="btn btn-primary ms-2" href="#">Sign Up</a>
-                </li>
-                {% endif %}
+            {% if user.is_authenticated %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                <i class="fas fa-user-circle me-1"></i> {{ user.username }}
+                </a>
+                <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'profile' %}">Dashboard</a></li>
+                <li><a class="dropdown-item" href="{% url 'account_change_password' %}">Change Password</a></li>
+                <li><a class="dropdown-item" href="{% url 'account_email' %}">Email Settings</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                </ul>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-primary ms-2" href="{% url 'account_signup' %}">Sign Up</a>
+            </li>
+            {% endif %}
             </ul>
         </div>
     </div>
