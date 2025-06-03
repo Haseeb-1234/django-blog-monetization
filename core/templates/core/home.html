@@ -1,0 +1,57 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Home - CodeMonetize{% endblock %}
+
+{% block content %}
+<section class="hero-section bg-primary text-white py-5">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold">Learn to Code & Monetize Your Skills</h1>
+                <p class="lead my-4">Build profitable projects, grow your developer career, and create income streams with practical coding tutorials.</p>
+                <div class="d-flex gap-2">
+                    <a href="#" class="btn btn-light btn-lg px-4">Start Learning</a>
+                    <a href="#" class="btn btn-outline-light btn-lg px-4">Explore Premium</a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <img src="https://via.placeholder.com/500x300" alt="Coding Illustration" class="img-fluid rounded-3 shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="featured-posts py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Latest Articles</h2>
+        <div class="row">
+            <!-- Will be populated dynamically later -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow">
+                    <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Post thumbnail">
+                    <div class="card-body">
+                        <span class="badge bg-info mb-2">Django</span>
+                        <h5 class="card-title">Building a Monetizable Blog with Django</h5>
+                        <p class="card-text">Learn how to create a blog that generates revenue while building your portfolio.</p>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small>June 15, 2023</small>
+                            <a href="#" class="btn btn-sm btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Repeat 2 more times -->
+        </div>
+    </div>
+</section>
+
+<section class="cta-section bg-light py-5">
+    <div class="container text-center py-4">
+        <h2>Ready to Monetize Your Skills?</h2>
+        <p class="lead mb-4">Join our premium membership for exclusive content, resources, and income-generating projects.</p>
+        <a href="#" class="btn btn-primary btn-lg px-5">Get Premium Access</a>
+    </div>
+</section>
+{% endblock %}
